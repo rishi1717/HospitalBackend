@@ -12,6 +12,6 @@ let appointmentSchema = new mongoose.Schema({
 	time: String,
 })
 
-const Payment = mongoose.model("user", appointmentSchema)
+const Payment = mongoose.model("appointment", appointmentSchema)
 
 export default Payment

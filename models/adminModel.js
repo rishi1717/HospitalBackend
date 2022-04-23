@@ -24,6 +24,6 @@ adminSchema.methods.generateAuthToken = (admin) => {
 	return token
 }
 
-const Admin = mongoose.model("user", adminSchema)
+const Admin = mongoose.model("admin", adminSchema)
 
 export default Admin

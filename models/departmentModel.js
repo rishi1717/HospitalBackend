@@ -9,6 +9,6 @@ let departmentSchema = new mongoose.Schema(
 	},
 )
 
-const Departments = mongoose.model("user", departmentSchema)
+const Departments = mongoose.model("department", departmentSchema)
 
 export default Departments

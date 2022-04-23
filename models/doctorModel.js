@@ -13,6 +13,7 @@ let doctorSchema = new mongoose.Schema(
 		days: String,
 		time: String,
 		fee: Array,
+		password:String
 	},
 	{ timestamps: true }
 )
@@ -24,6 +25,6 @@ doctorSchema.methods.generateAuthToken = (doctor) => {
 	return token
 }
 
-const Doctors = mongoose.model("user", doctorSchema)
+const Doctors = mongoose.model("doctor", doctorSchema)
 
 export default Doctors

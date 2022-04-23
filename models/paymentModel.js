@@ -10,6 +10,6 @@ let paymentSchema = new mongoose.Schema({
     time:String,
 })
 
-const Payment = mongoose.model("user", paymentSchema)
+const Payment = mongoose.model("payment", paymentSchema)
 
 export default Payment
