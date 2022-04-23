@@ -14,24 +14,22 @@ export async function updateUser(req, res) {
 		})
 		if (error)
 			return res.status(400).send({ message: error.details[0].message })
-          console.log(req.params.id);
 		await Users.updateOne({ _id: req.params.id }, { ...req.body })
 		const user = await Users.find({ _id: req.params.id })
 		res.status(201).send({ user, message: "User Updated succesfully" })
 	} catch (err) {
-		console.log(err.message)
-		res.status(500).json({ message: "Internal server error" })
+		res.status(500).json({ message: err.message })
 	}
 }
 
 const validate = (data) => {
 	const schema = joi.object({
-		firstName: joi.string().label("firstName"),
-		secondName: joi.string().label("secondName"),
-		age: joi.number().label("age"),
-		gender: joi.string().label("gender"),
-		email: joi.string().label("email"),
-		phone: joi.string().label("phone"),
+		firstName: joi.string().required().label("firstName"),
+		secondName: joi.string().required().label("secondName"),
+		age: joi.number().required().label("age"),
+		gender: joi.string().required().label("gender"),
+		email: joi.string().required().label("email"),
+		phone: joi.string().required().label("phone"),
 		blood: joi.string().label("blood"),
 	})
 	return schema.validate(data)
