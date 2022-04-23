@@ -1,6 +1,6 @@
 import express, { json, urlencoded } from "express"
 import cors from "cors"
-import connection from "./models/index.js"
+import connect from "./models/index.js"
 import userRoutes from "./routes/userRoutes.js"
 import doctorRoutes from "./routes/doctorRoutes.js"
 import departmentRoutes from "./routes/departmentRoutes.js"
@@ -10,6 +10,7 @@ import paymentRoutes from "./routes/paymentRoutes.js"
 import dotenv from "dotenv"
 dotenv.config()
 
+connect
 const app = express()
 const port = process.env.PORT || 3001
 
