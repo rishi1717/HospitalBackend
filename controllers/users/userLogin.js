@@ -21,8 +21,8 @@ export async function userLogin(req, res) {
 		const token = user.generateAuthToken(user)
 
 		res.status(200).send({
-			name: user.name,
-			user: token,
+			user: user,
+			token: token,
 			message: "Logged in succesfully",
 		})
 	} catch (error) {

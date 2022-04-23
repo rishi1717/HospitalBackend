@@ -4,7 +4,6 @@ import passwordComplexity from "joi-password-complexity"
 import bcrypt from "bcrypt"
 
 export async function userRegister(req, res) {
-	console.log(req.body);
 	try {
 		const { error } = validate(req.body)
 		if (error)
