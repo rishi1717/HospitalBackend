@@ -5,7 +5,7 @@ dotenv.config()
 let departmentSchema = new mongoose.Schema(
 	{
 		name: String,
-		doctor:Array
+		doctors:Array
 	},
 )
 
