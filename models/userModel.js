@@ -13,7 +13,7 @@ let userSchema = new mongoose.Schema(
 		phone: String,
 		blood: String,
 		password: String,
-		prescriptions: Object,
+		prescriptions: Array,
 	},
 	{ timestamps: true }
 )
