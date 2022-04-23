@@ -10,7 +10,7 @@ router.post("/login", doctorLogin)
 
 router.post("/", doctorRegister)
 
-router.get("/:id?", getDoctors)
+router.get("/:value?", getDoctors)
 
 router.put("/:id", updateDoctor)
 

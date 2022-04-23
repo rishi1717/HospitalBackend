@@ -6,6 +6,7 @@ dotenv.config()
 let doctorSchema = new mongoose.Schema(
 	{
 		name: String,
+		email: String,
 		department: String,
 		qualification: String,
 		expertise: String,
