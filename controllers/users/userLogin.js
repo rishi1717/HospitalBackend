@@ -1,4 +1,8 @@
-export async function userLogin (req, res) {
+import Users from "../../models/userModel.js"
+import joi from "joi"
+import bcrypt from "bcrypt"
+
+export async function userLogin(req, res) {
 	try {
 		const { error } = validate(req.body)
 		if (error)
@@ -14,7 +18,7 @@ export async function userLogin (req, res) {
 		if (!validPassword)
 			return res.status(401).send({ message: "Invalid password!" })
 
-		const token = user.generateAuthToken()
+		const token = user.generateAuthToken(user)
 
 		res.status(200).send({
 			name: user.name,
@@ -22,6 +26,14 @@ export async function userLogin (req, res) {
 			message: "Logged in succesfully",
 		})
 	} catch (error) {
-		res.status(500).send({ message: "Some internal server error occured" })
+		res.status(500).send({ message: error.message })
 	}
+}
+
+const validate = (data) => {
+	const schema = joi.object({
+		email: joi.string().required().label("email"),
+		password: joi.string().required().label("password"),
+	})
+	return schema.validate(data)
 }
