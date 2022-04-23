@@ -1,3 +1,3 @@
-exports.deleteDoctor = async function (req, res) {
+export async function deleteDoctor (req, res) {
 	res.send(req.params.id)
 }

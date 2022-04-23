@@ -1,3 +1,3 @@
-exports.deleteDepartment = async function (req, res) {
+export async function deleteDepartment (req, res) {
 	res.send(req.params.id)
 }

@@ -1,3 +1,3 @@
-exports.updateDoctor = async function (req, res) {
+export async function updateDoctor (req, res) {
 	res.send(req.params.id)
 }

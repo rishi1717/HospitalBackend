@@ -1,10 +1,10 @@
-const express = require("express")
-const router = express.Router()
+import { Router } from "express"
+const router = Router()
 
-const { addDepartment } = require("../controllers/departments/addDepartment")
-const { getDepartments } = require("../controllers/departments/getdepartments")
-const { updateDepartment } = require("../controllers/departments/updatedepartment")
-const { deleteDepartment } = require("../controllers/departments/deletedepartment")
+import { addDepartment } from "../controllers/departments/addDepartment.js"
+import { getDepartments } from "../controllers/departments/getdepartments.js"
+import { updateDepartment } from "../controllers/departments/updatedepartment.js"
+import { deleteDepartment } from "../controllers/departments/deletedepartment.js"
 
 router.post("/", addDepartment)
 
@@ -14,4 +14,4 @@ router.put("/:id", updateDepartment)
 
 router.delete("/:id", deleteDepartment)
 
-module.exports = router
+export default router

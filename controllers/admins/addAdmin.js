@@ -1,3 +1,3 @@
-exports.addAdmin = async function (req, res) {
+export async function addAdmin (req, res) {
 	res.send("added admin")
 }

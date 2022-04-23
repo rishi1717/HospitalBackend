@@ -1,3 +1,3 @@
-exports.doctorRegister = async function (req, res) {
+export async function doctorRegister (req, res) {
 	res.send("Doctor Register")
 }

@@ -1,3 +1,3 @@
-exports.updateAdmin = async function (req, res) {
+export async function updateAdmin (req, res) {
 	res.send("updated admin")
 }

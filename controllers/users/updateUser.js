@@ -1,3 +1,3 @@
-exports.updateUser = async function (req, res) {
+export async function updateUser (req, res) {
      res.send(req.params.id)
 }

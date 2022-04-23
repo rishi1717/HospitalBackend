@@ -1,10 +1,10 @@
-const express = require("express")
-const router = express.Router()
-const { userRegister } = require("../controllers/users/userRegister")
-const { userLogin } = require("../controllers/users/userLogin")
-const { getUsers } = require("../controllers/users/getUsers")
-const { updateUser } = require("../controllers/users/updateUser")
-const { deleteUser } = require("../controllers/users/deleteUser")
+import { Router } from "express"
+const router = Router()
+import { userRegister } from "../controllers/users/userRegister.js"
+import { userLogin } from "../controllers/users/userLogin.js"
+import { getUsers } from "../controllers/users/getUsers.js"
+import { updateUser } from "../controllers/users/updateUser.js"
+import { deleteUser } from "../controllers/users/deleteUser.js"
 
 router.post("/login", userLogin)
 
@@ -16,4 +16,4 @@ router.put("/:id", updateUser)
 
 router.delete("/:id", deleteUser)
 
-module.exports = router
+export default router

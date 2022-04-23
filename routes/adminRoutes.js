@@ -1,10 +1,10 @@
-const express = require("express")
-const router = express.Router()
+import { Router } from "express"
+const router = Router()
 
-const { addAdmin } = require("../controllers/admins/addAdmin")
-const { getAdmins } = require("../controllers/admins/getAdmins")
-const { updateAdmin } = require("../controllers/admins/updateAdmin")
-const { deleteAdmin } = require("../controllers/admins/deleteAdmin")
+import { addAdmin } from "../controllers/admins/addAdmin.js"
+import { getAdmins } from "../controllers/admins/getAdmins.js"
+import { updateAdmin } from "../controllers/admins/updateAdmin.js"
+import { deleteAdmin } from "../controllers/admins/deleteAdmin.js"
 
 router.post("/", addAdmin)
 
@@ -14,4 +14,4 @@ router.put("/:id", updateAdmin)
 
 router.delete("/:id", deleteAdmin)
 
-module.exports = router
+export default router

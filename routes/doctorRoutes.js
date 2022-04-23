@@ -1,10 +1,10 @@
-const express = require("express")
-const router = express.Router()
-const { doctorRegister } = require("../controllers/doctors/doctorRegister")
-const { doctorLogin } = require("../controllers/doctors/doctorLogin")
-const { getDoctors } = require("../controllers/doctors/getDoctors")
-const { updateDoctor } = require("../controllers/doctors/updateDoctor")
-const { deleteDoctor } = require("../controllers/doctors/deleteDoctor")
+import { Router } from "express"
+const router = Router()
+import { doctorRegister } from "../controllers/doctors/doctorRegister.js"
+import { doctorLogin } from "../controllers/doctors/doctorLogin.js"
+import { getDoctors } from "../controllers/doctors/getDoctors.js"
+import { updateDoctor } from "../controllers/doctors/updateDoctor.js"
+import { deleteDoctor } from "../controllers/doctors/deleteDoctor.js"
 
 router.post("/login", doctorLogin)
 
@@ -16,4 +16,4 @@ router.put("/:id", updateDoctor)
 
 router.delete("/:id", deleteDoctor)
 
-module.exports = router
+export default router

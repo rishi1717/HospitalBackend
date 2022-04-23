@@ -1,3 +1,3 @@
-exports.addAppointment = async function (req, res) {
+export async function addAppointment (req, res) {
 	res.send("added appointment")
 }

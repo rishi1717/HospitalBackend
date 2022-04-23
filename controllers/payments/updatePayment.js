@@ -1,3 +1,3 @@
-exports.updatePayment = async function (req, res) {
+export async function updatePayment (req, res) {
 	res.send("updated Payment")
 }

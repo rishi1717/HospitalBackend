@@ -1,4 +1,4 @@
-exports.getPayments = async function (req, res) {
+export async function getPayments (req, res) {
 	if (req.query.id) res.send(req.query.id)
 	else res.send("got payments")
 }

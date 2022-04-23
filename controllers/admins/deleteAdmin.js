@@ -1,3 +1,3 @@
-exports.deleteAdmin = async function (req, res) {
+export async function deleteAdmin (req, res) {
 	res.send(req.params.id)
 }

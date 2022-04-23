@@ -1,3 +1,3 @@
-exports.updateDepartment = async function (req, res) {
+export async function updateDepartment (req, res) {
 	res.send("updated Department")
 }

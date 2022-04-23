@@ -1,7 +1,8 @@
-const mongoose = require("mongoose")
-require("dotenv").config()
+import mongoose from "mongoose"
+import dotenv from "dotenv"
+dotenv.config()
 
-mongoose.connect(`${process.env.db_connect}`, (err) => {
+export default mongoose.connect(`${process.env.db_connect}`, (err) => {
 	if (err) {
 		console.log(err.message)
 		console.log("error connecting MongoDB")

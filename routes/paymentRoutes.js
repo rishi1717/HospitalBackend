@@ -1,9 +1,9 @@
-const express = require("express")
-const router = express.Router()
+import { Router } from "express"
+const router = Router()
 
-const { addPayment } = require("../controllers/payments/addPayment")
-const {	getPayments} = require("../controllers/payments/getPayments")
-const {	updatePayment} = require("../controllers/payments/updatePayment")
+import { addPayment } from "../controllers/payments/addPayment.js"
+import { getPayments } from "../controllers/payments/getPayments.js"
+import { updatePayment } from "../controllers/payments/updatePayment.js"
 
 router.post("/", addPayment)
 
@@ -11,4 +11,4 @@ router.get("/:id?", getPayments)
 
 router.put("/:id", updatePayment)
 
-module.exports = router
+export default router

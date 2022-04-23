@@ -1,4 +1,4 @@
-exports.userLogin = async function (req, res) {
+export async function userLogin (req, res) {
 	try {
 		const { error } = validate(req.body)
 		if (error)
