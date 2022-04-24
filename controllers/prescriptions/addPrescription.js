@@ -6,7 +6,6 @@ export async function addPrescription(req, res) {
 		const { error } = validate(req.body)
 		if (error)
 			return res.status(400).send({ message: error.details[0].message })
-        console.log({...req.body});
 		await new Prescription({ ...req.body }).save()
 		res.status(201).send({ message: "Prescription created succesfully" })
 	} catch (err) {

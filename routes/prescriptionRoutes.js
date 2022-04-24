@@ -4,7 +4,7 @@ const router = Router()
 import { addPrescription } from "../controllers/prescriptions/addPrescription.js"
 import { getPrescriptions } from "../controllers/prescriptions/getPrescriptions.js"
 
-router.get("/", getPrescriptions)
+router.get("/:id?", getPrescriptions)
 
 router.post("/", addPrescription)
 

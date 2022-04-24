@@ -1,5 +1,5 @@
 import express, { json, urlencoded } from "express"
-// import cors from "cors"
+import cors from "cors"
 import connect from "./models/index.js"
 import userRoutes from "./routes/userRoutes.js"
 import doctorRoutes from "./routes/doctorRoutes.js"
@@ -16,7 +16,7 @@ const app = express()
 const port = process.env.PORT || 3001
 
 //middlewares
-// app.use(cors())
+app.use(cors())
 app.use(json())
 app.use(urlencoded({ extended: false }))
 

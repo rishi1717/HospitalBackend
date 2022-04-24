@@ -1,4 +1,4 @@
-import Appointments from "../../models/departmentModel.js"
+import Appointments from "../../models/appointmentModel.js"
 
 export async function getAppointments(req, res) {
 	try {
