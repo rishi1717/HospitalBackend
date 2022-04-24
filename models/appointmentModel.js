@@ -3,8 +3,8 @@ import dotenv from "dotenv"
 dotenv.config()
 
 let appointmentSchema = new mongoose.Schema({
-    userId:Number,
-    doctorId:Number,
+    userId:String,
+    doctorId:String,
 	user: String,
 	doctor: String,
 	status: String,
