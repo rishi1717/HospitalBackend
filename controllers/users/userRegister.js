@@ -6,19 +6,20 @@ import bcrypt from "bcrypt"
 export async function userRegister(req, res) {
 	try {
 		let userData = {
-			firstName:"req.body.firstName",
-			secondName:"req.body.secondName",
+			firstName:req.body.firstName,
+			secondName:req.body.secondName,
 			age:req.body.age,
-			gender:"req.body.gender",
-			email:"req.body.email",
-			password:"req.body.password",
-			phone:"req.body.phone",
-			blood:"req.body.blood"
+			gender:req.body.gender,
+			email:req.body.email,
+			password:req.body.password,
+			phone:req.body.phone,
+			blood:req.body.blood
 		}
-		console.log(userData.password)
 		const { error } = validate(userData)
-		if (error)
+		if (error){	
 			return res.status(400).send({ message: error.details[0].message })
+		}
+			
 		const user = await Users.findOne({ email: req.body.email })
 		if (user)
 			return res
