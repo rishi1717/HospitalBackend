@@ -5,12 +5,14 @@ import { doctorLogin } from "../controllers/doctors/doctorLogin.js"
 import { getDoctors } from "../controllers/doctors/getDoctors.js"
 import { updateDoctor } from "../controllers/doctors/updateDoctor.js"
 import { deleteDoctor } from "../controllers/doctors/deleteDoctor.js"
+import authVerify from "../middlewares/authVerify.js"
+
 
 router.post("/login", doctorLogin)
 
 router.post("/", doctorRegister)
 
-router.get("/:value?", getDoctors)
+router.get("/:value?",authVerify, getDoctors)
 
 router.put("/:id", updateDoctor)
 

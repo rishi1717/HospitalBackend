@@ -2,24 +2,38 @@ import Users from "../../models/userModel.js"
 import joi from "joi"
 import passwordComplexity from "joi-password-complexity"
 import bcrypt from "bcrypt"
+import cloudinary from "cloudinary"
+import dotenv from "dotenv"
+dotenv.config()
+
+cloudinary.config({
+	cloud_name: process.env.CLOUDINARY_NAME,
+	api_key: process.env.CLOUDINARY_API_KEY,
+	api_secret: process.env.CLOUDINARY_API_SECRET,
+})
 
 export async function userRegister(req, res) {
 	try {
+		// console.log(req.body)
+		// const fileStr = req.body.data
+		// const uploadResponse = await cloudinary.uploader.upload(fileStr, {})
+		// console.log(uploadResponse)
+		// res.json({ msg: "yaya" })
 		let userData = {
-			firstName:req.body.firstName,
-			secondName:req.body.secondName,
-			age:req.body.age,
-			gender:req.body.gender,
-			email:req.body.email,
-			password:req.body.password,
-			phone:req.body.phone,
-			blood:req.body.blood
+			firstName: req.body.firstName,
+			secondName: req.body.secondName,
+			age: req.body.age,
+			gender: req.body.gender,
+			email: req.body.email,
+			password: req.body.password,
+			phone: req.body.phone,
+			blood: req.body.blood,
 		}
 		const { error } = validate(userData)
-		if (error){	
+		if (error) {
 			return res.status(400).send({ message: error.details[0].message })
 		}
-			
+
 		const user = await Users.findOne({ email: req.body.email })
 		if (user)
 			return res
@@ -45,7 +59,7 @@ const validate = (data) => {
 		email: joi.string().required().label("email"),
 		phone: joi.string().label("phone"),
 		password: passwordComplexity().required().label("password"),
-		blood: joi.allow("blood")
+		blood: joi.allow("blood"),
 	})
 	return schema.validate(data)
 }

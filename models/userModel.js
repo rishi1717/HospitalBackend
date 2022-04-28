@@ -12,7 +12,8 @@ let userSchema = new mongoose.Schema(
 		email: String,
 		phone: String,
 		blood: String,
-		password: String
+		password: String,
+		// image: String
 	},
 	{ timestamps: true }
 )
