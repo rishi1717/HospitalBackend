@@ -5,8 +5,8 @@ import { addPrescription } from "../controllers/prescriptions/addPrescription.js
 import { getPrescriptions } from "../controllers/prescriptions/getPrescriptions.js"
 import authVerify from "../middlewares/authVerify.js"
 
-router.get("/:id?",authVerify, getPrescriptions)
+router.get("/:id?", authVerify, getPrescriptions)
 
-router.post("/", addPrescription)
+router.post("/", authVerify, addPrescription)
 
 export default router

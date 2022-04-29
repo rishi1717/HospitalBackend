@@ -1,3 +1,6 @@
 export async function deleteDoctor (req, res) {
-	res.send(req.params.id)
+	if(req.userjwt.role==='admin'){
+		res.send(req.params.id)
+	}
+	res.send({message:'unauthorized'})
 }

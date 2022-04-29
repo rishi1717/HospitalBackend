@@ -14,8 +14,8 @@ router.post("/", doctorRegister)
 
 router.get("/:value?",authVerify, getDoctors)
 
-router.put("/:id", updateDoctor)
+router.put("/:id", authVerify, updateDoctor)
 
-router.delete("/:id", deleteDoctor)
+router.delete("/:id", authVerify, deleteDoctor)
 
 export default router

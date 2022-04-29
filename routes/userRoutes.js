@@ -11,10 +11,10 @@ router.post("/login", userLogin)
 
 router.post("/", userRegister)
 
-router.get("/:id?", getUsers)
+router.get("/:id?", authVerify, getUsers)
 
-router.put("/:id",authVerify, updateUser)
+router.put("/:id", authVerify, updateUser)
 
-router.delete("/:id", deleteUser)
+router.delete("/:id", authVerify, deleteUser)
 
 export default router

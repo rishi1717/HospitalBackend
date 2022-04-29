@@ -7,12 +7,12 @@ import { updateDepartment } from "../controllers/departments/updatedepartment.js
 import { deleteDepartment } from "../controllers/departments/deletedepartment.js"
 import authVerify from "../middlewares/authVerify.js"
 
-router.post("/", addDepartment)
+router.post("/", authVerify, addDepartment)
 
 router.get("/:id?",authVerify, getDepartments)
 
-router.put("/:id", updateDepartment)
+router.put("/:id", authVerify, updateDepartment)
 
-router.delete("/:id", deleteDepartment)
+router.delete("/:id", authVerify, deleteDepartment)
 
 export default router

@@ -8,8 +8,8 @@ import authVerify from '../middlewares/authVerify.js'
 
 router.post("/",authVerify, addPayment)
 
-router.get("/:id?", getPayments)
+router.get("/:id?", authVerify, getPayments)
 
-router.put("/:id", updatePayment)
+router.put("/:id", authVerify, updatePayment)
 
 export default router

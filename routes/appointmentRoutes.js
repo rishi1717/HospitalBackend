@@ -7,12 +7,12 @@ import { updateAppointment } from "../controllers/appointments/updateAppointment
 import { deleteAppointment } from "../controllers/appointments/deleteAppointment.js"
 import authVerify from "../middlewares/authVerify.js"
 
-router.post("/", addAppointment)
+router.post("/", authVerify, addAppointment)
 
 router.get("/:id?",authVerify, getAppointments)
 
-router.put("/:id", updateAppointment)
+router.put("/:id", authVerify, updateAppointment)
 
-router.delete("/:id", deleteAppointment)
+router.delete("/:id", authVerify, deleteAppointment)
 
 export default router
