@@ -5,6 +5,7 @@ import { userLogin } from "../controllers/users/userLogin.js"
 import { getUsers } from "../controllers/users/getUsers.js"
 import { updateUser } from "../controllers/users/updateUser.js"
 import { deleteUser } from "../controllers/users/deleteUser.js"
+import authVerify from "../middlewares/authVerify.js"
 
 router.post("/login", userLogin)
 
@@ -12,7 +13,7 @@ router.post("/", userRegister)
 
 router.get("/:id?", getUsers)
 
-router.put("/:id", updateUser)
+router.put("/:id",authVerify, updateUser)
 
 router.delete("/:id", deleteUser)
 

@@ -5,10 +5,11 @@ import { addAppointment } from "../controllers/appointments/addAppointment.js"
 import { getAppointments } from "../controllers/appointments/getAppointments.js"
 import { updateAppointment } from "../controllers/appointments/updateAppointment.js"
 import { deleteAppointment } from "../controllers/appointments/deleteAppointment.js"
+import authVerify from "../middlewares/authVerify.js"
 
 router.post("/", addAppointment)
 
-router.get("/:id?", getAppointments)
+router.get("/:id?",authVerify, getAppointments)
 
 router.put("/:id", updateAppointment)
 
