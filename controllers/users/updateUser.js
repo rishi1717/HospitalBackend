@@ -3,7 +3,7 @@ import joi from "joi"
 
 export async function updateUser(req, res) {
 	try {
-		const { error } = validate({
+		const updateData = {
 			firstName: req.body.firstName,
 			secondName: req.body.secondName,
 			age: req.body.age,
@@ -11,10 +11,12 @@ export async function updateUser(req, res) {
 			email: req.body.email,
 			phone: req.body.phone,
 			blood: req.body.blood,
-		})
+			image: req.file ? req.file.path : null,
+		}
+		const { error } = validate(updateData)
 		if (error)
 			return res.status(400).send({ message: error.details[0].message })
-		await Users.updateOne({ _id: req.params.id }, { ...req.body })
+		await Users.updateOne({ _id: req.params.id }, { ...updateData })
 		const user = await Users.find({ _id: req.params.id })
 		res.status(201).send({ user, message: "User Updated succesfully" })
 	} catch (err) {
@@ -31,6 +33,7 @@ const validate = (data) => {
 		email: joi.string().required().label("email"),
 		phone: joi.string().required().label("phone"),
 		blood: joi.string().label("blood"),
+		image: joi.allow().label("image"),
 	})
 	return schema.validate(data)
 }

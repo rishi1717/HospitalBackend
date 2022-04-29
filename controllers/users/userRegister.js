@@ -2,23 +2,13 @@ import Users from "../../models/userModel.js"
 import joi from "joi"
 import passwordComplexity from "joi-password-complexity"
 import bcrypt from "bcrypt"
-import cloudinary from "cloudinary"
 import dotenv from "dotenv"
 dotenv.config()
 
-cloudinary.config({
-	cloud_name: process.env.CLOUDINARY_NAME,
-	api_key: process.env.CLOUDINARY_API_KEY,
-	api_secret: process.env.CLOUDINARY_API_SECRET,
-})
-
 export async function userRegister(req, res) {
 	try {
-		// console.log(req.body)
-		// const fileStr = req.body.data
-		// const uploadResponse = await cloudinary.uploader.upload(fileStr, {})
-		// console.log(uploadResponse)
-		// res.json({ msg: "yaya" })
+		console.log(req.body)
+		console.log(req.file)
 		let userData = {
 			firstName: req.body.firstName,
 			secondName: req.body.secondName,
@@ -28,6 +18,7 @@ export async function userRegister(req, res) {
 			password: req.body.password,
 			phone: req.body.phone,
 			blood: req.body.blood,
+			image: req.file.path,
 		}
 		const { error } = validate(userData)
 		if (error) {
@@ -60,6 +51,7 @@ const validate = (data) => {
 		phone: joi.string().label("phone"),
 		password: passwordComplexity().required().label("password"),
 		blood: joi.allow("blood"),
+		image: joi.allow("image"),
 	})
 	return schema.validate(data)
 }
