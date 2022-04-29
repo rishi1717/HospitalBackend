@@ -20,9 +20,13 @@ let doctorSchema = new mongoose.Schema(
 )
 
 doctorSchema.methods.generateAuthToken = (doctor) => {
-	const token = JWT.sign({ _id: doctor._id }, process.env.JWT_KEY, {
-		expiresIn: "7d",
-	})
+	const token = JWT.sign(
+		{ _id: doctor._id, role: "doctor" },
+		process.env.JWT_KEY,
+		{
+			expiresIn: "7d",
+		}
+	)
 	return token
 }
 

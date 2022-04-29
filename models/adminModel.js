@@ -18,9 +18,13 @@ let adminSchema = new mongoose.Schema(
 )
 
 adminSchema.methods.generateAuthToken = (admin) => {
-	const token = JWT.sign({ _id: doctor._id }, process.env.JWT_KEY, {
-		expiresIn: "7d",
-	})
+	const token = JWT.sign(
+		{ _id: doctor._id, role: "admin" },
+		process.env.JWT_KEY,
+		{
+			expiresIn: "7d",
+		}
+	)
 	return token
 }
 
