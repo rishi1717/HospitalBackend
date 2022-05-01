@@ -21,7 +21,8 @@ export async function doctorLogin(req, res) {
 		const token = doctor.generateAuthToken(doctor)
 
 		res.status(200).send({
-			doctor: doctor._id,
+			doctorId: doctor._id,
+			doctorName: doctor.name,
 			token: token,
 			message: "Logged in succesfully",
 		})
