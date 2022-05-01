@@ -13,7 +13,7 @@ let doctorSchema = new mongoose.Schema(
 		experience: String,
 		days: String,
 		time: String,
-		fee: Array,
+		fee: Number,
 		password:String
 	},
 	{ timestamps: true }

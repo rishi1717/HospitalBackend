@@ -6,6 +6,25 @@ import { getDoctors } from "../controllers/doctors/getDoctors.js"
 import { updateDoctor } from "../controllers/doctors/updateDoctor.js"
 import { deleteDoctor } from "../controllers/doctors/deleteDoctor.js"
 import authVerify from "../middlewares/authVerify.js"
+import multer from "multer"
+import { v2 as cloudinary } from "cloudinary"
+import { CloudinaryStorage } from "multer-storage-cloudinary"
+
+const storage = new CloudinaryStorage({
+	cloudinary: cloudinary,
+	params: {
+		folder: "Profile",
+	},
+})
+
+const upload = multer({ storage: storage })
+
+cloudinary.config({
+	cloud_name: process.env.CLOUDINARY_NAME,
+	api_key: process.env.CLOUDINARY_API_KEY,
+	api_secret: process.env.CLOUDINARY_API_SECRET,
+})
+
 
 
 router.post("/login", doctorLogin)
@@ -14,7 +33,7 @@ router.post("/", doctorRegister)
 
 router.get("/:id?",authVerify, getDoctors)
 
-router.put("/:id", authVerify, updateDoctor)
+router.put("/:id", authVerify,  upload.single('image'), updateDoctor)
 
 router.delete("/:id", authVerify, deleteDoctor)
 
