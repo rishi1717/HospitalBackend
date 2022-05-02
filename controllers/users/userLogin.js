@@ -26,7 +26,6 @@ export async function userLogin(req, res) {
 			message: "Logged in succesfully",
 		})
 	} catch (error) {
-		console.log(error.message)
 		res.status(500).send({ message: error.message })
 	}
 }

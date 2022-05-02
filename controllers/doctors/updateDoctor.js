@@ -4,7 +4,6 @@ import joi from "joi"
 export async function updateDoctor(req, res) {
 	try {
 		if (req.userjwt.role === "doctor" || req.userjwt.role === "admin") {
-			console.log(req.body);
 			const { error } = validate({
 				name: req.body.name,
 				department: req.body.department,

@@ -6,7 +6,6 @@ export async function updateAppointment(req, res) {
 		const appointment = await Appointment.find({ _id: req.params.id })
 		res.status(201).send({ appointment, message: "Appointment Updated succesfully" })
 	} catch (err) {
-		console.log(err.message)
 		res.status(500).send({ message: err.message })
 	}
 }

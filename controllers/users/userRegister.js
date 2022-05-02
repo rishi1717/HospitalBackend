@@ -7,8 +7,6 @@ dotenv.config()
 
 export async function userRegister(req, res) {
 	try {
-		console.log(req.body)
-		console.log(req.file)
 		let userData = {
 			firstName: req.body.firstName,
 			secondName: req.body.secondName,

@@ -11,7 +11,7 @@ export async function updateUser(req, res) {
 			email: req.body.email,
 			phone: req.body.phone,
 			blood: req.body.blood,
-			image: req.file ? req.file.path : null,
+			image: req.file ? req.file.path : req.body.image,
 		}
 		const { error } = validate(updateData)
 		if (error)
