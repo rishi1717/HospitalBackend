@@ -32,7 +32,7 @@ const validate = (data) => {
 		qualification: joi.string().required().label("qualification"),
 		expertise: joi.string().required().label("expertise"),
 		experience: joi.string().required().label("experience"),
-		days: joi.string().required().label("days"),
+		days: joi.array().required().label("days"),
 		startTime: joi.string().required().label("startTime"),
 		endTime: joi.string().required().label("endTime"),
 		fee: joi.number().required().label("fee"),

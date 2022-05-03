@@ -11,7 +11,7 @@ let doctorSchema = new mongoose.Schema(
 		qualification: String,
 		expertise: String,
 		experience: String,
-		days: String,
+		days: Array,
 		startTime: String,
 		endTime: String,
 		fee: Number,
