@@ -1,4 +1,4 @@
-import Payment from "../../models/paymentModel"
+import Payment from "../../models/paymentModel.js"
 
 export async function payPayment(req, res) {
 	try {
