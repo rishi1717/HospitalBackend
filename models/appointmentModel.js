@@ -4,6 +4,7 @@ dotenv.config()
 
 let appointmentSchema = new mongoose.Schema({
 	userId: String,
+	paymentId: String,
 	doctorId: String,
 	user: String,
 	doctor: String,

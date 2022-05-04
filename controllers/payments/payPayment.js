@@ -6,16 +6,17 @@ export async function payPayment(req, res) {
 			req.body
 		const newOrder = Payment({
 			isPaid: true,
-			amount: amount,
+			amount: amount/100,
 			razorpay: {
 				appointmentId: razorpayOrderId,
 				paymentId: razorpayPaymentId,
 				signature: razorpaySignature,
 			},
 		})
-		await newOrder.save()
+		let orderDet = await newOrder.save()
 		res.send({
 			msg: "Payment was successfull",
+            paymentId:orderDet._id
 		})
 	} catch (error) {
 		console.log(error)
