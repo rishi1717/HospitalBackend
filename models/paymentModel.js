@@ -3,11 +3,13 @@ import dotenv from "dotenv"
 dotenv.config()
 
 let paymentSchema = new mongoose.Schema({
-	user:Number,
-    doctor:Number,
-    fee:Number,
-    date:String,
-    time:String,
+    amount:Number,
+    isPaid:Boolean,
+    razorpay:{
+        appointmentId:String,
+        paymentId:String,
+        signature:String,
+    }
 })
 
 const Payment = mongoose.model("payment", paymentSchema)
