@@ -1,4 +1,6 @@
+import Payment from "../../models/paymentModel.js"
+
 export async function getPayments (req, res) {
-	if (req.query.id) res.send(req.query.id)
-	else res.send("got payments")
+	const orders = await Payment.find()
+	res.send(orders)
 }

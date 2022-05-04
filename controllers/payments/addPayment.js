@@ -12,7 +12,7 @@ export async function addPayment(req, res) {
 			amount: req.body.amount,
 			currency: "INR",
 		}
-		const payment = await instance.payments.create(options)
+		const payment = await instance.orders.create(options)
 		if (!payment) return res.status(500).send("Some error occured")
 		res.send(payment)
 	} catch (error) {
