@@ -19,6 +19,7 @@ const validate = (data) => {
 	const schema = joi.object({
 		userId: joi.string().required().label("UserId"),
 		doctorId: joi.string().required().label("doctorId"),
+		paymentId: joi.string().required().label("paymentId"),
 		user: joi.string().required().label("User"),
 		doctor: joi.string().required().label("doctor"),
 		status: joi.string().required().label("status"),
