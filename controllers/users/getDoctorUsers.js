@@ -39,7 +39,6 @@ export async function getDoctorUsers(req, res) {
                 }
             }
 		})
-		console.log(uniqueUsers)
 		res.send({ users: uniqueUsers, message: "users found" })
 	} catch (err) {
 		console.log(err.message)
