@@ -7,12 +7,15 @@ import { getAppointmentDoctor } from "../controllers/appointments/getAppointment
 import { updateAppointment } from "../controllers/appointments/updateAppointment.js"
 import { deleteAppointment } from "../controllers/appointments/deleteAppointment.js"
 import authVerify from "../middlewares/authVerify.js"
+import { getAppointmentByDate } from "../controllers/appointments/getAppointmentByDate.js"
 
 router.post("/", authVerify, addAppointment)
 
 router.get("/:id?",authVerify, getAppointments)
 
 router.get("/:id/:date",authVerify, getAppointmentDoctor)
+
+router.get("/date/:date/:id", authVerify, getAppointmentByDate)
 
 router.put("/:id", authVerify, updateAppointment)
 
