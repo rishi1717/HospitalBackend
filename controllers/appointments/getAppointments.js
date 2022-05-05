@@ -3,7 +3,7 @@ import Appointment from "../../models/appointmentModel.js"
 export async function getAppointments(req, res) {
 	try {
 		if (req.params.id) {
-			let appointment = await Appointment.findOne({ _id: req.params.id })
+			let appointment = await Appointment.find({ userId: req.params.id })
 			res.status(201).send({ appointment, message: "appointment found" })
 		} else {
 			let appointment = await Appointment.find().sort({ date: 1, time: -1 })
