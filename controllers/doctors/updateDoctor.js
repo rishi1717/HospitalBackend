@@ -4,21 +4,11 @@ import joi from "joi"
 export async function updateDoctor(req, res) {
 	try {
 		if (req.userjwt.role === "doctor" || req.userjwt.role === "admin") {
-			const { error } = validate({
-				name: req.body.name,
-				department: req.body.department,
-				qualification: req.body.qualification,
-				email: req.body.email,
-				expertise: req.body.expertise,
-				experience: req.body.experience,
-				days: req.body.days,
-				startTime: req.body.startTime,
-				endTime: req.body.endTime,
-				fee: req.body.fee,
-			})
+			const updateData = {...req.body,image:req.file ? req.file.path : req.body.image}
+			const { error } = validate(updateData)
 			if (error)
 				return res.status(400).send({ message: error.details[0].message })
-			await Doctors.updateOne({ _id: req.params.id }, { ...req.body })
+			await Doctors.updateOne({ _id: req.params.id }, { ...updateData })
 			const doctor = await Doctors.find({ _id: req.params.id })
 			res.status(201).send({ doctor, message: "doctor Updated succesfully" })
 		}
@@ -38,10 +28,11 @@ const validate = (data) => {
 		qualification: joi.string().required().label("qualification"),
 		expertise: joi.string().required().label("expertise"),
 		experience: joi.string().required().label("experience"),
-		days: joi.array().required().label("days"),
+		// days: joi.array().required().label("days"),
 		startTime: joi.string().required().label("startTime"),
 		endTime: joi.string().required().label("endTime"),
 		fee: joi.number().required().label("fee"),
+		image: joi.allow().label("image"),
 	})
 	return schema.validate(data)
 }

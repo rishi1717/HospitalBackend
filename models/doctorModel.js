@@ -15,7 +15,8 @@ let doctorSchema = new mongoose.Schema(
 		startTime: String,
 		endTime: String,
 		fee: Number,
-		password:String
+		password:String,
+		image:String
 	},
 	{ timestamps: true }
 )
