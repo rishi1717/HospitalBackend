@@ -10,7 +10,7 @@ import authVerify from "../middlewares/authVerify.js"
 
 router.post("/", authVerify, addAppointment)
 
-router.get("/",authVerify, getAppointments)
+router.get("/:id?",authVerify, getAppointments)
 
 router.get("/:id/:date",authVerify, getAppointmentDoctor)
 
