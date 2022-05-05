@@ -6,7 +6,6 @@ export async function addAppointment(req, res) {
 		const { error } = validate(req.body)
 		if (error)
 			return res.status(400).send({ message: error.details[0].message })
-		console.log(req.body)
 		await new Appointment({ ...req.body }).save()
 		res.status(201).send({ message: "Appointment created succesfully" })
 	} catch (err) {

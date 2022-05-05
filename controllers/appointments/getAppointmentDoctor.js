@@ -12,8 +12,6 @@ export async function getAppointmentDoctor(req, res) {
 				return appointment.time
 			}
 		})
-        console.log(timeArray)
-        // console.log(doctorTiming)
 		res.status(201).send({ doctorTiming, timeArray, message: "appointments found" })
 	} catch (err) {
 		res.status(500).send({ message: err.message })
