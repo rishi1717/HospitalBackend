@@ -4,7 +4,6 @@ export async function getAppointments(req, res) {
 	try {
 		if (req.params.id) {
 			let appointment = await Appointment.findOne({ _id: req.params.id })
-			console.log(appointment)
 			res.status(201).send({ appointment, message: "appointment found" })
 		} else {
 			let appointment = await Appointment.find().sort({ date: 1, time: -1 })

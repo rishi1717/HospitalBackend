@@ -9,6 +9,7 @@ import authVerify from "../middlewares/authVerify.js"
 import multer from 'multer'
 import { v2 as cloudinary } from "cloudinary"
 import {CloudinaryStorage} from 'multer-storage-cloudinary'
+import { getDoctorUsers } from "../controllers/users/getDoctorUsers.js"
 
 const storage = new CloudinaryStorage({
 	cloudinary: cloudinary,
@@ -30,6 +31,8 @@ router.post("/login", userLogin)
 router.post("/", upload.single('image'), userRegister)
 
 router.get("/:id?", authVerify, getUsers)
+
+router.get("/doctor/:id?", authVerify, getDoctorUsers)
 
 router.put("/:id", upload.single('image'), authVerify, updateUser)
 
