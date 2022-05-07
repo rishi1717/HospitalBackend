@@ -1,13 +1,11 @@
 import Appointment from "../../models/appointmentModel.js"
-import dayjs from "dayjs"
 
-export async function getAppointmentByDate(req, res) {
+export async function getAppointmentHistory(req, res) {
 	try {
-		const date = dayjs(req.params.date).format("DD/MM/YYYY")
 		const appointment = await Appointment.find({
-			date: date,
-			doctorId: req.params.id,
-		}).sort({ time: 1 })
+			userId: req.params.userId,
+			doctorId: req.params.doctorId,
+		}).sort({ date: -1, time: -1 })
 		res.status(201).send({
 			appointment,
 			message: "appointments found",
