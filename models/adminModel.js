@@ -6,23 +6,18 @@ dotenv.config()
 let adminSchema = new mongoose.Schema(
 	{
 		name: String,
-		department: String,
-		qualification: String,
-		expertise: String,
-		experience: String,
-		days: String,
-		time: String,
-		fee: Array,
+		email:String,
+		password:String,
 	},
 	{ timestamps: true }
 )
 
 adminSchema.methods.generateAuthToken = (admin) => {
 	const token = JWT.sign(
-		{ _id: doctor._id, role: "admin" },
+		{ _id: admin._id, role: "admin" },
 		process.env.JWT_KEY,
 		{
-			expiresIn: "7d",
+			expiresIn: "1d",
 		}
 	)
 	return token
