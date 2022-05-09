@@ -10,10 +10,13 @@ import authVerify from "../middlewares/authVerify.js"
 import { getAppointmentByDate } from "../controllers/appointments/getAppointmentByDate.js"
 import { getAppointmentHistory } from "../controllers/appointments/getAppointmentHistory.js"
 import { getAppointmentDetail } from "../controllers/appointments/getAppointmentDetail.js"
+import { getDoctorAppointments } from "../controllers/appointments/getDoctorAppointemtns.js"
 
 router.post("/", authVerify, addAppointment)
 
 router.get("/:id?",authVerify, getAppointments)
+
+router.get("/doctor/:id", authVerify, getDoctorAppointments)
 
 router.get("/detail/:id",authVerify, getAppointmentDetail)
 
