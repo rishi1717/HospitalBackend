@@ -3,7 +3,6 @@ import joi from "joi"
 
 export async function updateDoctor(req, res) {
 	try {
-		console.log(req.body)
 		if (req.userjwt.role === "doctor" || req.userjwt.role === "admin") {
 			const updateData = {
 				name: req.body.name,
@@ -24,7 +23,7 @@ export async function updateDoctor(req, res) {
 				return res.status(400).send({ message: error.details[0].message })
 			}
 
-			await Doctors.updateOne({ _id: req.params.id }, { ...updateData, active:req.body.active })
+			await Doctors.updateOne({ _id: req.params.id }, { ...updateData, active:req.body.active, admin:req.body.admin })
 			res.status(201).send({ message: "doctor Updated succesfully" })
 		} else {
 			res.status(401).json({ message: "not authorized" })
