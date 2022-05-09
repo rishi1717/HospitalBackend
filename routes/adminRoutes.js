@@ -8,9 +8,9 @@ import { deleteAdmin } from "../controllers/admins/deleteAdmin.js"
 import { adminLogin } from "../controllers/admins/adminLogin.js"
 import { getSubAdmins } from "../controllers/admins/getSubAdmins.js"
 
-router.post("/", authVerify, addAdmin)
+router.post("/", addAdmin)
 
-router.post("/login", authVerify,  adminLogin)
+router.post("/login",  adminLogin)
 
 router.get("/", authVerify, getAdmins)
 

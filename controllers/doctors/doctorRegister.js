@@ -17,7 +17,7 @@ export async function doctorRegister(req, res) {
 		const salt = await bcrypt.genSalt(Number(process.env.SALT))
 		const hashPassword = await bcrypt.hash(req.body.password, salt)
 
-		await new Doctors({ ...req.body, password: hashPassword, admin:false }).save()
+		await new Doctors({ ...req.body, password: hashPassword, admin:false, active:true }).save()
 		res.status(201).send({ message: "doctor created succesfully" })
 	} catch (err) {
 		res.status(500).json({ message: err.message })

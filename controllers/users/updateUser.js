@@ -7,18 +7,21 @@ export async function updateUser(req, res) {
 			firstName: req.body.firstName,
 			secondName: req.body.secondName,
 			age: req.body.age,
-			gender: req.body.gender,
 			email: req.body.email,
 			phone: req.body.phone,
 			blood: req.body.blood,
+			gender: req.body.gender,
 			image: req.file ? req.file.path : req.body.image,
 		}
 		const { error } = validate(updateData)
-		if (error)
+		if (error){
+			console.log(error.details[0].message)
 			return res.status(400).send({ message: error.details[0].message })
+		}
+			
 		await Users.updateOne(
 			{ _id: req.params.id },
-			{ ...updateData, access: req.body.access }
+			{ ...updateData, access:req.body.access }
 		)
 		const user = await Users.find({ _id: req.params.id })
 		res.status(201).send({ user, message: "User Updated succesfully" })
