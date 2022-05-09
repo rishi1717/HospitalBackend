@@ -16,10 +16,14 @@ export async function updateUser(req, res) {
 		const { error } = validate(updateData)
 		if (error)
 			return res.status(400).send({ message: error.details[0].message })
-		await Users.updateOne({ _id: req.params.id }, { ...updateData })
+		await Users.updateOne(
+			{ _id: req.params.id },
+			{ ...updateData, access: req.body.access }
+		)
 		const user = await Users.find({ _id: req.params.id })
 		res.status(201).send({ user, message: "User Updated succesfully" })
 	} catch (err) {
+		console.log(err.message)
 		res.status(500).json({ message: err.message })
 	}
 }
