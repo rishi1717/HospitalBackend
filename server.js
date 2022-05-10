@@ -9,6 +9,7 @@ import adminRoutes from "./routes/adminRoutes.js"
 import paymentRoutes from "./routes/paymentRoutes.js"
 import prescriptionRoutes from "./routes/prescriptionRoutes.js"
 import scheduleRoutes from "./routes/scheduleRoutes.js"
+import chartRoutes from "./routes/chartRoutes.js"
 import dotenv from "dotenv"
 dotenv.config()
 
@@ -30,6 +31,7 @@ app.use("/admin", adminRoutes)
 app.use("/payment", paymentRoutes)
 app.use("/prescription", prescriptionRoutes)
 app.use("/schedule", scheduleRoutes)
+app.use("/chart", chartRoutes)
 
 app.listen(port, (err) => {
 	if (err) {
