@@ -12,4 +12,6 @@ router.get("/doctor/:id", authVerify, getDoctorPrescriptions)
 
 router.post("/", authVerify, addPrescription)
 
+router.delete("/:id", authVerify, addPrescription)
+
 export default router
