@@ -18,6 +18,9 @@ export async function userLogin(req, res) {
 		if (!validPassword)
 			return res.status(401).send({ message: "Invalid password!" })
 
+		if(!user.access)
+			return res.status(401).send({ message: "Account Blocked!" })
+
 		const token = user.generateAuthToken(user)
 
 		res.status(200).send({

@@ -18,6 +18,9 @@ export async function doctorLogin(req, res) {
 		if (!validPassword)
 			return res.status(401).send({ message: "Invalid password!" })
 
+		if(!doctor.active)
+			return res.status(401).send({ message: "Account Blocked!" })
+
 		const token = doctor.generateAuthToken(doctor)
 
 		res.status(200).send({

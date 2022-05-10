@@ -1,4 +1,8 @@
 import Appointment from "../../models/appointmentModel.js"
+import dayjs from "dayjs"
+import customParseFormat from "dayjs/plugin/customParseFormat.js"
+dayjs.extend(customParseFormat)
+dayjs("12-25-1995", "MM-DD-YYYY")
 
 export async function getBarDetails(req, res) {
 	try {
@@ -9,7 +13,8 @@ export async function getBarDetails(req, res) {
 		let dates = [],
 			amount = []
 		appointment.forEach((element) => {
-			dates.push(element._id)
+            const temp = dayjs(element._id, "DD/MM/YYYY").format("DD/MM")
+			dates.push(temp)
 			amount.push(element.amount)
 		})
 		res.status(201).send({ dates, amount, message: "details fetched" })
