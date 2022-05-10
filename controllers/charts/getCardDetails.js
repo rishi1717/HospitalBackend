@@ -8,8 +8,8 @@ export async function getCardDetails(req, res) {
 		const docInactive = await Doctors.countDocuments({ active: false })
 		const doctor = [docCount, docActive, docInactive]
 		let userCount = await Users.countDocuments({})
-		const userActive = await Doctors.countDocuments({ access: true })
-		const userInactive = await Doctors.countDocuments({ access: false })
+		const userActive = await Users.countDocuments({ access: true })
+		const userInactive = await Users.countDocuments({ access: false })
         const user = [userCount, userActive, userInactive]
 		res.status(201).send({ doctor, user, message: "details fetched" })
 	} catch (err) {
