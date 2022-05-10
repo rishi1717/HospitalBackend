@@ -1,4 +1,4 @@
-import Doctors from "../../models/doctorModel"
+import Doctors from "../../models/doctorModel.js"
 
 export async function deleteDoctor (req, res) {
 		if (req.userjwt.role === "doctor" || req.userjwt.role === "admin") {
