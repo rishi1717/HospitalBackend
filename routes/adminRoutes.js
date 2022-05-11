@@ -7,6 +7,7 @@ import { updateAdmin } from "../controllers/admins/updateAdmin.js"
 import { deleteAdmin } from "../controllers/admins/deleteAdmin.js"
 import { adminLogin } from "../controllers/admins/adminLogin.js"
 import { getSubAdmins } from "../controllers/admins/getSubAdmins.js"
+import { changePassword } from "../controllers/admins/changePassword.js"
 
 router.post("/", addAdmin)
 
@@ -17,6 +18,8 @@ router.get("/", authVerify, getAdmins)
 router.get("/admins", authVerify, getSubAdmins)
 
 router.put("/:id", authVerify, updateAdmin)
+
+router.put("/changepassword/:id", authVerify, changePassword)
 
 router.delete("/:id", authVerify, deleteAdmin)
 
