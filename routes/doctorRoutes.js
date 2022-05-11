@@ -9,6 +9,7 @@ import authVerify from "../middlewares/authVerify.js"
 import multer from "multer"
 import { v2 as cloudinary } from "cloudinary"
 import { CloudinaryStorage } from "multer-storage-cloudinary"
+import { changePassword } from "../controllers/doctors/changePassword.js"
 
 const storage = new CloudinaryStorage({
 	cloudinary: cloudinary,
@@ -34,6 +35,8 @@ router.post("/", doctorRegister)
 router.get("/:id?",authVerify, getDoctors)
 
 router.put("/:id", authVerify,  upload.single('image'), updateDoctor)
+
+router.put("/changepassword/:id", authVerify, changePassword)
 
 router.delete("/:id", authVerify, deleteDoctor)
 
