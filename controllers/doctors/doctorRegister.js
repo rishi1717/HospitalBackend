@@ -5,7 +5,7 @@ import bcrypt from "bcrypt"
 
 export async function doctorRegister(req, res) {
 	try {
-		const { error } = validate(req.body)
+		const { error } = validate({...req.body,days:JSON.parse( req.body.days)})
 		if (error)
 			return res.status(400).send({ message: error.details[0].message })
 		const doctor = await Doctors.findOne({ email: req.body.email })
@@ -37,6 +37,7 @@ const validate = (data) => {
 		endTime: joi.string().required().label("endTime"),
 		fee: joi.number().required().label("fee"),
 		password: passwordComplexity().required().label("password"),
+		request: joi.boolean().label("request"),
 		image: joi.allow(),
 		admin: joi.boolean().label("admin"),
 	})

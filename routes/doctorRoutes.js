@@ -30,7 +30,7 @@ cloudinary.config({
 
 router.post("/login", doctorLogin)
 
-router.post("/", doctorRegister)
+router.post("/", upload.single("image"), doctorRegister)
 
 router.get("/:id?",authVerify, getDoctors)
 

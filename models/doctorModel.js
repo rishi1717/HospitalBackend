@@ -19,6 +19,7 @@ let doctorSchema = new mongoose.Schema(
 		image:String,
 		admin:Boolean,
 		active:Boolean,
+		request:Boolean,
 	},
 	{ timestamps: true }
 )

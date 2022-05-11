@@ -9,7 +9,7 @@ import authVerify from "../middlewares/authVerify.js"
 
 router.post("/", authVerify, addDepartment)
 
-router.get("/:id?",authVerify, getDepartments)
+router.get("/:id?", getDepartments)
 
 router.put("/:id", authVerify, updateDepartment)
 
