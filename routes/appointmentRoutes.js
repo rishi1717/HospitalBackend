@@ -11,6 +11,7 @@ import { getAppointmentByDate } from "../controllers/appointments/getAppointment
 import { getAppointmentHistory } from "../controllers/appointments/getAppointmentHistory.js"
 import { getAppointmentDetail } from "../controllers/appointments/getAppointmentDetail.js"
 import { getDoctorAppointments } from "../controllers/appointments/getDoctorAppointemtns.js"
+import { updateAppointmentStatus } from "../controllers/appointments/updateAppointmentStatus.js"
 
 router.post("/", authVerify, addAppointment)
 
@@ -27,6 +28,8 @@ router.get("/date/:date/:id", authVerify, getAppointmentByDate)
 router.get("/history/:userId/:doctorId", authVerify, getAppointmentHistory)
 
 router.put("/:id", authVerify, updateAppointment)
+
+router.put("/status/:id", authVerify, updateAppointmentStatus)
 
 router.delete("/:id", authVerify, deleteAppointment)
 

@@ -3,7 +3,6 @@ import dayjs from "dayjs"
 
 export async function updateAppointment(req, res) {
 	try {
-		console.log(req.body)
 		const date = dayjs(req.body.date).format("DD/MM/YYYY")
 		await Appointment.updateOne({ _id: req.params.id }, {$set:{...req.body, date: date}})
 		const appointment = await Appointment.find({ _id: req.params.id })
