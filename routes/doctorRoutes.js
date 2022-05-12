@@ -36,7 +36,7 @@ router.get("/:id?",authVerify, getDoctors)
 
 router.put("/:id", authVerify,  upload.single('image'), updateDoctor)
 
-router.put("/changepassword/:id", authVerify, changePassword)
+router.put("/changepassword/:id", authVerify,  upload.single('image'), changePassword)
 
 router.delete("/:id", authVerify, deleteDoctor)
 

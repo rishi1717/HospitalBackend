@@ -3,6 +3,7 @@ import joi from "joi"
 
 export async function updateDoctor(req, res) {
 	try {
+		const dayArray = JSON.parse(req.body.days)
 		if (req.userjwt.role === "doctor" || req.userjwt.role === "admin") {
 			const updateData = {
 				name: req.body.name,
@@ -11,12 +12,13 @@ export async function updateDoctor(req, res) {
 				qualification: req.body.qualification,
 				expertise: req.body.expertise,
 				experience: req.body.experience,
-				// days: req.body.days,
+				days: dayArray,
 				startTime: req.body.startTime,
 				endTime: req.body.endTime,
 				fee: req.body.fee,
 				image: req.file ? req.file.path : req.body.image,
 			}
+			console.log(updateData)
 			const { error } = validate(updateData)
 			if (error) {
 				console.log(error.details[0].message)
@@ -42,7 +44,7 @@ const validate = (data) => {
 		qualification: joi.string().required().label("qualification"),
 		expertise: joi.string().required().label("expertise"),
 		experience: joi.string().required().label("experience"),
-		// days: joi.array().required().label("days"),
+		days: joi.array().required().label("days"),
 		startTime: joi.string().required().label("startTime"),
 		endTime: joi.string().required().label("endTime"),
 		fee: joi.number().required().label("fee"),

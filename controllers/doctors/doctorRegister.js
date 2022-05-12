@@ -5,11 +5,13 @@ import bcrypt from "bcrypt"
 
 export async function doctorRegister(req, res) {
 	try {
-		console.log(req.body)
 		const dayArray = JSON.parse( req.body.days)
-		console.log(dayArray)
 
-		const { error } = validate({...req.body,days:dayArray})
+		const { error } = validate({
+			...req.body,
+			days: dayArray,
+			image: req.file ? req.file.path : req.body.image,
+		})
 		if (error)
 			return res.status(400).send({ message: error.details[0].message })
 		const doctor = await Doctors.findOne({ email: req.body.email })
@@ -21,7 +23,14 @@ export async function doctorRegister(req, res) {
 		const salt = await bcrypt.genSalt(Number(process.env.SALT))
 		const hashPassword = await bcrypt.hash(req.body.password, salt)
 
-		await new Doctors({ ...req.body, password: hashPassword, admin:false, active:true, days:dayArray }).save()
+		await new Doctors({
+			...req.body,
+			password: hashPassword,
+			admin: false,
+			active: true,
+			days: dayArray,
+			image: req.file ? req.file.path : req.body.image,
+		}).save()
 		res.status(201).send({ message: "doctor created succesfully" })
 	} catch (err) {
 		res.status(500).json({ message: err.message })
