@@ -18,7 +18,6 @@ export async function updateDoctor(req, res) {
 				fee: req.body.fee,
 				image: req.file ? req.file.path : req.body.image,
 			}
-			console.log(updateData)
 			const { error } = validate(updateData)
 			if (error) {
 				console.log(error.details[0].message)

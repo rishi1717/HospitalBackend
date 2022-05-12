@@ -4,7 +4,10 @@ dotenv.config()
 
 let departmentSchema = new mongoose.Schema(
 	{
-		name: String,
+		name: {
+			type: String,
+			unique: true,
+		},
 		doctors:Array
 	},
 )

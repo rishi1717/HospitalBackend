@@ -9,7 +9,10 @@ let userSchema = new mongoose.Schema(
 		secondName: String,
 		age: Number,
 		gender: String,
-		email: String,
+		email: {
+			type: String,
+			unique: true,			
+		},
 		phone: String,
 		blood: String,
 		password: String,

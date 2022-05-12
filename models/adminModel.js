@@ -5,7 +5,10 @@ dotenv.config()
 
 let adminSchema = new mongoose.Schema(
 	{
-		name: String,
+		name: {
+			type: String,
+			unique: true,
+		},
 		email:String,
 		password:String,
 	},
