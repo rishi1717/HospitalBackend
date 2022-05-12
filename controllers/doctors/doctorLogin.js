@@ -18,8 +18,11 @@ export async function doctorLogin(req, res) {
 		if (!validPassword)
 			return res.status(401).send({ message: "Invalid password!" })
 
-		if(!doctor.active)
+		if (!doctor.active)
 			return res.status(401).send({ message: "Account Blocked!" })
+
+		if (doctor.request)
+			return res.status(401).send({ message: "Request Pending!" })
 
 		const token = doctor.generateAuthToken(doctor)
 
@@ -30,7 +33,7 @@ export async function doctorLogin(req, res) {
 			message: "Logged in succesfully",
 		})
 	} catch (error) {
-        res.status(500).send({ message: error.message })
+		res.status(500).send({ message: error.message })
 	}
 }
 

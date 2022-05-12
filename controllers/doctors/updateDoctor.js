@@ -1,4 +1,5 @@
 import Doctors from "../../models/doctorModel.js"
+import Departments from "../../models/departmentModel.js"
 import joi from "joi"
 
 export async function updateDoctor(req, res) {
@@ -24,8 +25,18 @@ export async function updateDoctor(req, res) {
 				return res.status(400).send({ message: error.details[0].message })
 			}
 
-			await Doctors.updateOne({ _id: req.params.id }, { ...updateData, active:req.body.active, admin:req.body.admin })
-			res.status(201).send({ message: "doctor Updated succesfully" })
+			await Doctors.updateOne(
+				{ _id: req.params.id },
+				{ ...updateData, active: req.body.active, admin: req.body.admin }
+			)
+			if (req.body.department === req.body.oldDepartment) {
+				res.status(201).send({ message: "doctor Updated succesfully" })
+			}
+			else {
+				await Departments.findOneAndUpdate({ name: req.body.oldDepartment }, { $pull: { doctors: req.params.id } })
+				await Departments.findOneAndUpdate({ name: req.body.department }, { $push: { doctors: req.params.id } })
+				res.status(201).send({ message: "doctor Updated succesfully" })
+			}
 		} else {
 			res.status(401).json({ message: "not authorized" })
 		}

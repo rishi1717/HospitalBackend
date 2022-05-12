@@ -1,4 +1,6 @@
 import Doctors from "../../models/doctorModel.js"
+import Departments from "../../models/departmentModel.js"
+
 import joi from "joi"
 import passwordComplexity from "joi-password-complexity"
 import bcrypt from "bcrypt"
@@ -23,7 +25,7 @@ export async function doctorRegister(req, res) {
 		const salt = await bcrypt.genSalt(Number(process.env.SALT))
 		const hashPassword = await bcrypt.hash(req.body.password, salt)
 
-		await new Doctors({
+		const result = await new Doctors({
 			...req.body,
 			password: hashPassword,
 			admin: false,
@@ -31,8 +33,10 @@ export async function doctorRegister(req, res) {
 			days: dayArray,
 			image: req.file ? req.file.path : req.body.image,
 		}).save()
+		await Departments.findOneAndUpdate({name:req.body.department},{$push:{doctors:result._id.toString()}})
 		res.status(201).send({ message: "doctor created succesfully" })
 	} catch (err) {
+		console.log(err.message)
 		res.status(500).json({ message: err.message })
 	}
 }

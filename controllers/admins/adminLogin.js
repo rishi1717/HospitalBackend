@@ -10,12 +10,10 @@ export async function adminLogin(req, res) {
 		const admin = await Admins.findOne({ email: req.body.email })
 		if (!admin) return res.status(401).send({ message: "Invalid email!" })
 
-		// const validPassword = await bcrypt.compare(
-		// 	req.body.password,
-		// 	admin.password
-		// )
-
-        const validPassword = (req.body.password === admin.password)
+		const validPassword = await bcrypt.compare(
+			req.body.password,
+			admin.password
+		)
 
 		if (!validPassword)
 			return res.status(401).send({ message: "Invalid password!" })
