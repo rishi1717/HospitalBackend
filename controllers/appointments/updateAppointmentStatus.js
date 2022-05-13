@@ -1,5 +1,4 @@
 import Appointment from "../../models/appointmentModel.js"
-import dayjs from "dayjs"
 
 export async function updateAppointmentStatus(req, res) {
 	try {
