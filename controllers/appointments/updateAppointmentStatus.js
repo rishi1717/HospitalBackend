@@ -2,7 +2,6 @@ import Appointment from "../../models/appointmentModel.js"
 
 export async function updateAppointmentStatus(req, res) {
 	try {
-		console.log(req.body)
 		await Appointment.updateOne(
 			{ _id: req.params.id },
 			{ $set: { ...req.body, status: req.body.status } }

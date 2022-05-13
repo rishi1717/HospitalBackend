@@ -23,15 +23,15 @@ app.use(json())
 app.use(urlencoded({ extended: false }))
 
 //routes
-app.use("/user", userRoutes)
-app.use("/doctor", doctorRoutes)
-app.use("/department", departmentRoutes)
-app.use("/appointment", appointmentRoutes)
-app.use("/admin", adminRoutes)
-app.use("/payment", paymentRoutes)
-app.use("/prescription", prescriptionRoutes)
-app.use("/schedule", scheduleRoutes)
-app.use("/chart", chartRoutes)
+app.use("/api/user", userRoutes)
+app.use("/api/doctor", doctorRoutes)
+app.use("/api/department", departmentRoutes)
+app.use("/api/appointment", appointmentRoutes)
+app.use("/api/admin", adminRoutes)
+app.use("/api/payment", paymentRoutes)
+app.use("/api/prescription", prescriptionRoutes)
+app.use("/api/schedule", scheduleRoutes)
+app.use("/api/chart", chartRoutes)
 
 app.all("*", (req, res, next) => {
 	res.status(404).json({
