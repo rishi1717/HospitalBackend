@@ -7,6 +7,7 @@ dayjs("12-25-1995", "MM-DD-YYYY")
 export async function getBarDetails(req, res) {
 	try {
 		let appointment = await Appointment.aggregate([
+			{ $match: { $or:[{status: "Scheduled"},{ status: 'Complete' }] } },
 			{ $group: { _id: "$date", amount: { $sum: "$fee" } } },
 			{ $sort: { _id: 1 } },
 		])

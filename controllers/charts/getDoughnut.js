@@ -9,11 +9,10 @@ export async function getDoughnut(req, res) {
             }
         ])
         let depName=[], depCount=[]
-        departments.map(department => {
+        departments.forEach(department => {
             depName.push(department.name)
             depCount.push(department.count)
         })
-        console.log(depName, depCount)
         res.status(201).send({ depName, depCount, message: "DoughnutChart fetched succesfully" })
 	} catch (err) {
         console.log(err.message);
