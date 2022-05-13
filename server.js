@@ -33,6 +33,17 @@ app.use("/prescription", prescriptionRoutes)
 app.use("/schedule", scheduleRoutes)
 app.use("/chart", chartRoutes)
 
+app.all("*", (req, res, next) => {
+	res.status(404).json({
+		status: "fail",
+		message: `Can't find ${req.originalUrl} on this server!`,
+	})
+})
+
+app.use((err, req, res, next) => {
+	res.status(500).json({ status: "fail", message: err.message })
+})
+
 app.listen(port, (err) => {
 	if (err) {
 		console.log("error creating server")

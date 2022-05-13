@@ -4,7 +4,6 @@ import joi from "joi"
 
 export async function updateDoctor(req, res) {
 	try {
-
 		const isJsonParsable = (string) => {
 			try {
 				JSON.parse(string)
@@ -16,7 +15,13 @@ export async function updateDoctor(req, res) {
 
 		const parsable = isJsonParsable(req.body.days)
 
-		let dayArray
+		const parsableReq = isJsonParsable(req.body.request)
+
+		let dayArray,requestBoolean
+
+		if(parsableReq){
+			requestBoolean = JSON.parse(req.body.request)
+		}
 
 		if(parsable) {
 			dayArray = JSON.parse(req.body.days)
@@ -37,6 +42,7 @@ export async function updateDoctor(req, res) {
 				startTime: req.body.startTime,
 				endTime: req.body.endTime,
 				fee: req.body.fee,
+				request: requestBoolean,
 				image: req.file ? req.file.path : req.body.image,
 			}
 			const { error } = validate(updateData)
@@ -49,14 +55,22 @@ export async function updateDoctor(req, res) {
 				{ _id: req.params.id },
 				{ ...updateData, active: req.body.active, admin: req.body.admin }
 			)
-			if (req.body.department === req.body.oldDepartment) {
-				res.status(201).send({ message: "doctor Updated succesfully" })
+			if(req.body.oldDepartment){
+				if (req.body.department === req.body.oldDepartment) {
+					res.status(201).send({ message: "doctor Updated succesfully" })
+				} else {
+					await Departments.findOneAndUpdate(
+						{ name: req.body.oldDepartment },
+						{ $pull: { doctors: req.params.id } }
+					)
+					await Departments.findOneAndUpdate(
+						{ name: req.body.department },
+						{ $push: { doctors: req.params.id } }
+					)
+					res.status(201).send({ message: "doctor Updated succesfully" })
+				}
 			}
-			else {
-				await Departments.findOneAndUpdate({ name: req.body.oldDepartment }, { $pull: { doctors: req.params.id } })
-				await Departments.findOneAndUpdate({ name: req.body.department }, { $push: { doctors: req.params.id } })
-				res.status(201).send({ message: "doctor Updated succesfully" })
-			}
+			
 		} else {
 			res.status(401).json({ message: "not authorized" })
 		}
@@ -80,6 +94,7 @@ const validate = (data) => {
 		fee: joi.number().required().label("fee"),
 		image: joi.allow().label("image"),
 		active: joi.allow(),
+		request: joi.allow(),
 	})
 	return schema.validate(data)
 }
