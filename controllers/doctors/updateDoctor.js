@@ -4,7 +4,27 @@ import joi from "joi"
 
 export async function updateDoctor(req, res) {
 	try {
-		const dayArray = JSON.parse(req.body.days)
+
+		const isJsonParsable = (string) => {
+			try {
+				JSON.parse(string)
+			} catch (e) {
+				return false
+			}
+			return true
+		}
+
+		const parsable = isJsonParsable(req.body.days)
+
+		let dayArray
+
+		if(parsable) {
+			dayArray = JSON.parse(req.body.days)
+		}
+		else{
+			dayArray = req.body.days
+		}
+		
 		if (req.userjwt.role === "doctor" || req.userjwt.role === "admin") {
 			const updateData = {
 				name: req.body.name,
