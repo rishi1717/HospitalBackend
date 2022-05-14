@@ -24,8 +24,9 @@ export async function updateDoctor(req, res) {
 		}
 
 		if(parsable) {
-			dayArray = JSON.parse(req.body.days)
+			dayArray = JSON.parse(JSON.stringify(req.body.days))
 		}
+
 		else{
 			dayArray = req.body.days
 		}
@@ -51,10 +52,11 @@ export async function updateDoctor(req, res) {
 				return res.status(400).send({ message: error.details[0].message })
 			}
 
-			await Doctors.updateOne(
+			const res1 = await Doctors.updateOne(
 				{ _id: req.params.id },
 				{ ...updateData, active: req.body.active, admin: req.body.admin }
 			)
+			
 			if(req.body.oldDepartment){
 				if (req.body.department === req.body.oldDepartment) {
 					res.status(201).send({ message: "doctor Updated succesfully" })
