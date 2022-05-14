@@ -7,10 +7,10 @@ let prescriptionSchema = new mongoose.Schema({
 	doctorId: String,
 	doctor: String,
 	user: String,
-	prescribedFor:String,
-    medicine: String,
+	prescribedFor:[String],
+    medicine: [String],
     date: String,
-    dosage: String,
+    dosage: [String],
 })
 
 const Prescription = mongoose.model("prescription", prescriptionSchema)
