@@ -6,11 +6,12 @@ import { getUsers } from "../controllers/users/getUsers.js"
 import { updateUser } from "../controllers/users/updateUser.js"
 import { deleteUser } from "../controllers/users/deleteUser.js"
 import authVerify from "../middlewares/authVerify.js"
-import multer from 'multer'
+import multer from "multer"
 import { v2 as cloudinary } from "cloudinary"
-import {CloudinaryStorage} from 'multer-storage-cloudinary'
+import { CloudinaryStorage } from "multer-storage-cloudinary"
 import { getDoctorUsers } from "../controllers/users/getDoctorUsers.js"
 import { changePassword } from "../controllers/users/changePassword.js"
+import { getTwilioOTP } from "../twilio/twilioController.js"
 
 const storage = new CloudinaryStorage({
 	cloudinary: cloudinary,
@@ -19,7 +20,7 @@ const storage = new CloudinaryStorage({
 	},
 })
 
-const upload = multer({storage:storage})
+const upload = multer({ storage: storage })
 
 cloudinary.config({
 	cloud_name: process.env.CLOUDINARY_NAME,
@@ -29,15 +30,17 @@ cloudinary.config({
 
 router.post("/login", userLogin)
 
-router.post("/", upload.single('image'), userRegister)
+router.post("/", upload.single("image"), userRegister)
 
 router.get("/:id?", authVerify, getUsers)
 
 router.get("/doctor/:id?", authVerify, getDoctorUsers)
 
-router.put("/:id", upload.single('image'), authVerify, updateUser)
+router.put("/:id", upload.single("image"), authVerify, updateUser)
 
 router.put("/changepassword/:id", authVerify, changePassword)
+
+router.post("/twiliotest", getTwilioOTP)
 
 router.delete("/:id", authVerify, deleteUser)
 
