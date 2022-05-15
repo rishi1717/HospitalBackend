@@ -17,7 +17,11 @@ let userSchema = new mongoose.Schema(
 		blood: String,
 		password: String,
 		image: String,
-		access:Boolean
+		access:Boolean,
+		otp:{
+			type:Number,
+			expires:'5m'
+		}
 	},
 	{ timestamps: true }
 )
