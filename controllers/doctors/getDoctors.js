@@ -7,7 +7,7 @@ export async function getDoctors(req, res) {
 			res.status(201).send({ doctor, message: "got doctor details" })
 		} else {
 			if (req.userjwt.role === "user") {
-				let doctor = await Doctors.find({ active: true })
+				let doctor = await Doctors.find({ active: true, request: false })
 				res.status(201).send({ doctor, message: "got doctors" })
 			} else {
 				let doctor = await Doctors.find()

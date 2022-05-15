@@ -17,20 +17,20 @@ export async function updateDoctor(req, res) {
 
 		const parsableReq = isJsonParsable(req.body.request)
 
-		let dayArray,requestBoolean
+		let dayArray, requestBoolean
 
-		if(parsableReq){
+		if (parsableReq) {
 			requestBoolean = JSON.parse(req.body.request)
+		} else {
+			requestBoolean = req.body.request
 		}
 
-		if(parsable) {
-			dayArray = JSON.parse(JSON.stringify(req.body.days))
-		}
-
-		else{
+		if (parsable) {
+			dayArray = JSON.parse(req.body.days)
+		} else {
 			dayArray = req.body.days
 		}
-		
+
 		if (req.userjwt.role === "doctor" || req.userjwt.role === "admin") {
 			const updateData = {
 				name: req.body.name,
@@ -56,8 +56,8 @@ export async function updateDoctor(req, res) {
 				{ _id: req.params.id },
 				{ ...updateData, active: req.body.active, admin: req.body.admin }
 			)
-			
-			if(req.body.oldDepartment){
+
+			if (req.body.oldDepartment) {
 				if (req.body.department === req.body.oldDepartment) {
 					res.status(201).send({ message: "doctor Updated succesfully" })
 				} else {
@@ -72,7 +72,6 @@ export async function updateDoctor(req, res) {
 					res.status(201).send({ message: "doctor Updated succesfully" })
 				}
 			}
-			
 		} else {
 			res.status(401).json({ message: "not authorized" })
 		}
