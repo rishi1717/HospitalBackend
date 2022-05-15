@@ -1,7 +1,7 @@
 import Users from "../../models/userModel.js"
 
 export async function deleteUser(req, res) {
-	if (req.userjwt.role === "doctor" || req.userjwt.role === "admin") {
+	if (req.userjwt.role === "admin") {
 		try {
 			await Users.deleteOne({ _id: req.params.id })
 			res.status(201).send({ message: "user deleted succesfully" })

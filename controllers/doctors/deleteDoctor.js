@@ -2,7 +2,7 @@ import Doctors from "../../models/doctorModel.js"
 import Departments from "../../models/departmentModel.js"
 
 export async function deleteDoctor(req, res) {
-	if (req.userjwt.role === "doctor" || req.userjwt.role === "admin") {
+	if (req.userjwt.role === "admin") {
 		try {
 			const doc = await Doctors.findOne(
 				{

@@ -6,7 +6,7 @@ dayjs("12-25-1995", "MM-DD-YYYY")
 
 export async function getBarDetails(req, res) {
 	try {
-		if (req.userjwt.role === "admin") {
+		if (req.userjwt.role === "admin" || req.userjwt.role === "doctor") {
 			let appointment = await Appointment.aggregate([
 				{
 					$match: {
