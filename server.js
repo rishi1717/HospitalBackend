@@ -8,7 +8,6 @@ import appointmentRoutes from "./routes/appointmentRoutes.js"
 import adminRoutes from "./routes/adminRoutes.js"
 import paymentRoutes from "./routes/paymentRoutes.js"
 import prescriptionRoutes from "./routes/prescriptionRoutes.js"
-import scheduleRoutes from "./routes/scheduleRoutes.js"
 import chartRoutes from "./routes/chartRoutes.js"
 import dotenv from "dotenv"
 dotenv.config()
@@ -30,7 +29,6 @@ app.use("/api/appointment", appointmentRoutes)
 app.use("/api/admin", adminRoutes)
 app.use("/api/payment", paymentRoutes)
 app.use("/api/prescription", prescriptionRoutes)
-app.use("/api/schedule", scheduleRoutes)
 app.use("/api/chart", chartRoutes)
 
 app.all("*", (req, res, next) => {

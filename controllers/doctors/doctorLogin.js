@@ -30,6 +30,7 @@ export async function doctorLogin(req, res) {
 			doctorId: doctor._id,
 			doctorName: doctor.name,
 			token: token,
+			image: doctor.image,
 			message: "Logged in succesfully",
 		})
 	} catch (error) {
