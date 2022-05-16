@@ -10,6 +10,8 @@ import multer from "multer"
 import { v2 as cloudinary } from "cloudinary"
 import { CloudinaryStorage } from "multer-storage-cloudinary"
 import { changePassword } from "../controllers/doctors/changePassword.js"
+import { getTwilioOTPDoc } from "../twilio/twilioControllerDoc.js"
+import { verifyOtpDoc } from "../twilio/verifyOtpDoc.js"
 
 const storage = new CloudinaryStorage({
 	cloudinary: cloudinary,
@@ -37,6 +39,10 @@ router.get("/:id?",authVerify, getDoctors)
 router.put("/:id", authVerify,  upload.single('image'), updateDoctor)
 
 router.put("/changepassword/:id", authVerify,  upload.single('image'), changePassword)
+
+router.post("/otplogin", getTwilioOTPDoc)
+
+router.post("/otpverify", verifyOtpDoc)
 
 router.delete("/:id", authVerify, deleteDoctor)
 
