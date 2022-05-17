@@ -11,17 +11,20 @@ let userSchema = new mongoose.Schema(
 		gender: String,
 		email: {
 			type: String,
-			unique: true,			
+			unique: true,
 		},
-		phone: String,
+		phone: {
+			type: String,
+			unique: true,
+		},
 		blood: String,
 		password: String,
 		image: String,
-		access:Boolean,
-		otp:{
-			type:Number,
-			expires:'5m'
-		}
+		access: Boolean,
+		otp: {
+			type: Number,
+			expires: "5m",
+		},
 	},
 	{ timestamps: true }
 )

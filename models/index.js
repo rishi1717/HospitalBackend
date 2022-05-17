@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 dotenv.config()
 
 export default mongoose.connect(`${process.env.db_connect}`, (err) => {
+	console.log(process.env.db_connect)
 	if (err) {
 		console.log(err.message)
 		console.log("error connecting MongoDB")
