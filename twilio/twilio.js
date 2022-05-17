@@ -4,15 +4,13 @@ dotenv.config()
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID
 const authToken = process.env.TWILIO_AUTH_TOKEN
+const serviceId = process.env.TWILIO_SERVICE_SID
 
-export const sendSms = (phone, message) => {
+export const sendSms = (phone, otp) => {
 	const client = new twilio(accountSid, authToken)
-	client.messages
-		.create({
-			body: message,
-			from: process.env.TWILIO_PHONE_NUMBER,
-			to: phone,
-		})
-		.then((message) => console.log(message.sid))
-}
 
+	client.verify
+		.services(serviceId)
+		.verificationChecks.create({ to: phone, code: otp })
+		.then((verification_check) => console.log(verification_check.status))
+}
