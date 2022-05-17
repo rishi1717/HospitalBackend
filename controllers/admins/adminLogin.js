@@ -16,12 +16,10 @@ export async function adminLogin(req, res) {
 			}
 		}
 
-		// const validPassword = await bcrypt.compare(
-		// 	req.body.password,
-		// 	admin.password
-		// )
-
-		const validPassword = (req.body.password === admin.password)
+		const validPassword = await bcrypt.compare(
+			req.body.password,
+			admin.password
+		)
 
 		if (!validPassword)
 			return res.status(401).send({ message: "Invalid password!" })
