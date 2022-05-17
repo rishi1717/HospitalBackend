@@ -10,7 +10,6 @@ export const verifyOtpDoc = async (req, res) => {
 			})
 		} else {
 			const token = doctor.generateAuthToken(doctor)
-
 			res.status(200).send({
 				doctor: doctor,
 				token: token,

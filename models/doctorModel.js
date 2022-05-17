@@ -18,11 +18,15 @@ let doctorSchema = new mongoose.Schema(
 		startTime: String,
 		endTime: String,
 		fee: Number,
-		password:String,
-		image:String,
-		admin:Boolean,
-		active:Boolean,
-		request:Boolean,
+		password: String,
+		image: String,
+		admin: Boolean,
+		active: Boolean,
+		request: Boolean,
+		otp: {
+			type: Number,
+			expires: "5m",
+		},
 	},
 	{ timestamps: true }
 )
