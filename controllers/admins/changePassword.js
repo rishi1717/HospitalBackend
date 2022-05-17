@@ -12,10 +12,11 @@ export async function changePassword(req, res) {
 			if (!admin) {
 				return res.status(404).send({ message: "Admin not found" })
 			}
-			const validPassword = await bcrypt.compare(
-				req.body.oldPassword,
-				admin.password
-			)
+			// const validPassword = await bcrypt.compare(
+			// 	req.body.oldPassword,
+			// 	admin.password
+			// )
+			const validPassword = (req.body.oldPassword === admin.password)
 			if (!validPassword) {
 				return res.status(401).send({ message: "Invalid password!" })
 			}
