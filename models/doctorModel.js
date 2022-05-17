@@ -11,6 +11,7 @@ let doctorSchema = new mongoose.Schema(
 			unique: true,
 		},
 		department: String,
+		phone: String,
 		qualification: String,
 		expertise: String,
 		experience: String,
