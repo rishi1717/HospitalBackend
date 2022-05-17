@@ -6,6 +6,7 @@ const accountSid = process.env.TWILIO_ACCOUNT_SID
 const authToken = process.env.TWILIO_AUTH_TOKEN
 
 export const sendSms = (phone, message) => {
+	console.log(phone)
 	const client = new twilio(accountSid, authToken)
 	client.messages
 		.create({
