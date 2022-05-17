@@ -15,6 +15,9 @@ export const sendSms = (phone, otp) => {
 			.services(serviceId)
 			.verificationChecks.create({ to: phone, code: otp })
 			.then((verification_check) => console.log(verification_check.status))
+			.catch((err) => {
+				console.log(err)
+			})
 	} catch (err) {
 		console.log(err.message)
 	}
