@@ -10,6 +10,7 @@ export const sendSms = (phone, otp) => {
 	const client = new twilio(accountSid, authToken)
 
 	try {
+		console.log(phone, otp)
 		client.verify
 			.services(serviceId)
 			.verificationChecks.create({ to: phone, code: otp })
