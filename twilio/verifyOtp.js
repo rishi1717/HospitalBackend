@@ -1,4 +1,4 @@
-import Users from "../models/userModel"
+import Users from "../models/userModel.js"
 import twilio from "twilio"
 import dotenv from "dotenv"
 dotenv.config()
