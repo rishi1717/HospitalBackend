@@ -10,10 +10,10 @@ export const verifyOtp = async (req, res) => {
 	try {
 		const { otpVerify, phone } = req.body
 		const client = new twilio(accountSid, authToken)
-		client.verify
+		const check = await client.verify
 			.services(serviceId)
 			.verificationChecks.create({ to: phone, code: otpVerify })
-			.then((verification_check) => console.log(verification_check.status))
+		console.log(check.status)
 	} catch (err) {
 		console.log(err.message)
 	}
