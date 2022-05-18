@@ -11,7 +11,6 @@ export const sendSms = (phone, otp) => {
 
 
 	try {
-		console.log(accountSid, authToken, serviceId, phone, otp)
 		client.verify
 			.services(serviceId)
 			.verifications.create({ to: phone, code: otp, channel: "sms" })

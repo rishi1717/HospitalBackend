@@ -1,22 +1,19 @@
-import Users from "../models/userModel.js"
+import twilio from "twilio"
+import dotenv from "dotenv"
+dotenv.config()
 
-export const verifyOtp = async(req, res) => {
+const accountSid = process.env.TWILIO_ACCOUNT_SID
+const authToken = process.env.TWILIO_AUTH_TOKEN
+const serviceId = process.env.TWILIO_SERVICE_SID
+
+export const verifyOtp = async (req, res) => {
 	try {
 		const { otpVerify, phone } = req.body
-		const user = await Users.findOne({ phone: phone })
-		if (Number(otpVerify) !== user.otp) {
-			return res.status(400).send({
-				message: "OTP not matched",
-			})
-		} else {
-			const token = user.generateAuthToken(user)
-
-			res.status(200).send({
-				user: user,
-				token: token,
-				message: "Logged in succesfully",
-			})
-		}
+		const client = new twilio(accountSid, authToken)
+		client.verify
+			.services(serviceId)
+			.verificationChecks.create({ to: phone, code: otpVerify })
+			.then((verification_check) => console.log(verification_check.status))
 	} catch (err) {
 		console.log(err.message)
 	}
