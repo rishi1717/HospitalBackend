@@ -21,10 +21,6 @@ let userSchema = new mongoose.Schema(
 		password: String,
 		image: String,
 		access: Boolean,
-		otp: {
-			type: Number,
-			expires: "5m",
-		},
 	},
 	{ timestamps: true }
 )

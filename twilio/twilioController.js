@@ -14,10 +14,7 @@ export const getTwilioOTP = async (req, res) => {
 			return res.status(401).send({ message: "User blocked!" })
 
         else{
-            const otp = Math.floor(Math.random() * 90000) + 10000
-            sendSms(phone, otp)
-            user.otp = otp
-            user.save()
+            sendSms(phone)
             return res.status(200).send({
                 message: "OTP sent"
             })
