@@ -7,7 +7,7 @@ const accountSid = process.env.TWILIO_ACCOUNT_SID
 const authToken = process.env.TWILIO_AUTH_TOKEN
 const serviceId = process.env.TWILIO_SERVICE_SID
 
-export const verifyOtp = async (req, res) => {
+export const verifyOtpDoc = async (req, res) => {
 	try {
 		const { otpVerify, phone } = req.body
 		const client = new twilio(accountSid, authToken)
