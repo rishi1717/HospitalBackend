@@ -20,7 +20,7 @@ export const verifyOtp = async (req, res) => {
 			const token = user.generateAuthToken(user)
 			return res.status(200).send({
 				message: "OTP verified",
-				user,
+				user:user,
 				token
 			})
 		}
