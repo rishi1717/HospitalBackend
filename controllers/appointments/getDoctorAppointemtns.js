@@ -4,7 +4,7 @@ export async function getDoctorAppointments(req, res) {
 	try {
 		const appointment = await Appointment.find({
 			doctorId: req.params.id,
-		}).sort({ time: 1 })
+		}).sort({ date:-1,time: 1 })
 		res.status(201).send({
 			appointment,
 			message: "appointments found",
