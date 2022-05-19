@@ -32,7 +32,18 @@ export async function userRegister(req, res) {
 		const salt = await bcrypt.genSalt(Number(process.env.SALT))
 		const hashPassword = await bcrypt.hash(req.body.password, salt)
 
-		await new Users({ ...userData, password: hashPassword, access:true }).save()
+		let phone = req.body.phone.trim().replace(/ +/g, "")
+
+		console.log(phone)
+
+		phone = phone.startsWith("+91") ? phone : "+91" + phone
+
+		await new Users({
+			...userData,
+			phone,
+			password: hashPassword,
+			access: true,
+		}).save()
 		res.status(201).send({ message: "User created succesfully" })
 	} catch (err) {
 		res.status(500).json({ message: err.message })

@@ -25,8 +25,13 @@ export async function doctorRegister(req, res) {
 		const salt = await bcrypt.genSalt(Number(process.env.SALT))
 		const hashPassword = await bcrypt.hash(req.body.password, salt)
 
+		let phone = req.body.phone.trim()
+		
+		phone = phone.startsWith("+91")?phone:"+91"+phone
+
 		const result = await new Doctors({
 			...req.body,
+			phone,
 			password: hashPassword,
 			admin: false,
 			active: true,

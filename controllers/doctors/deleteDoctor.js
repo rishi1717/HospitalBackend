@@ -1,5 +1,6 @@
 import Doctors from "../../models/doctorModel.js"
 import Departments from "../../models/departmentModel.js"
+import Appointment from "../../models/appointmentModel.js"
 
 export async function deleteDoctor(req, res) {
 	if (req.userjwt.role === "admin") {
@@ -12,6 +13,7 @@ export async function deleteDoctor(req, res) {
 			)
 			const dep = doc.department
 			await Departments.updateOne({ name: dep }, { $pull: { doctors: req.params.id } })
+			await Appointment.deleteMany({ doctorId: req.params.id })
 			await Doctors.deleteOne({ _id: req.params.id })
 			res.status(201).send({ message: "Doctor deleted succesfully" })
 		} catch (err) {

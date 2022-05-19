@@ -36,7 +36,6 @@ app.use("/api/payment", paymentRoutes)
 app.use("/api/prescription", prescriptionRoutes)
 app.use("/api/chart", chartRoutes)
 
-console.log("production")
 app.use(express.static(path.join(__dirname, "build")))
 app.get("/*", (req, res) => {
 	res.sendFile(path.join(__dirname, "build", "index.html"))
