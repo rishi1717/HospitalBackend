@@ -9,7 +9,7 @@ export async function adminLogin(req, res) {
 		if (error)
 			return res.status(400).send({ message: error.details[0].message })
 		let admin = await Admins.findOne({ email: req.body.email })
-		if (!admin) {
+		if (!admin.admin) {
 			admin = await Doctors.findOne({ email: req.body.email })
 			if (!admin) {
 				return res.status(401).send({ message: "Invalid email!" })
