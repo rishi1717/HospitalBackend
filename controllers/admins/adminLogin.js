@@ -11,8 +11,11 @@ export async function adminLogin(req, res) {
 		let admin = await Admins.findOne({ email: req.body.email })
 		if (!admin) {
 			admin = await Doctors.findOne({ email: req.body.email })
-			if (!admin.admin) {
+			if (!admin) {
 				return res.status(401).send({ message: "Invalid email!" })
+			}
+			if (!admin.admin) {
+				return res.status(401).send({ message: "No Admin access!" })
 			}
 		}
 
